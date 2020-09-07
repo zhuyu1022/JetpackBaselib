@@ -60,17 +60,20 @@ abstract class BaseVmFragment<VM : BaseViewModel>:Fragment() {
     private fun createViewModel(): VM {
         return ViewModelProvider(this).get(getVmClazz(this))
     }
+
     abstract fun showLoading(message: String = "请求网络中...")
 
     abstract fun dismissLoading()
+    abstract fun onError(message: String = "")
 
+    open fun onStatusChanged(status: String) {}
 
     /**
      * 注册 UI 事件
      */
     private fun registerUiChange() {
         //显示弹窗
-        mViewModel.loadingChange.showDialog.observe(this, Observer {
+        mViewModel.loadingChange.showDialog.observe(viewLifecycleOwner, Observer {
             showLoading(
                 if (it.isEmpty()) {
                     "请求网络中..."
@@ -78,7 +81,16 @@ abstract class BaseVmFragment<VM : BaseViewModel>:Fragment() {
             )
         })
         //关闭弹窗
-        mViewModel.loadingChange.dismissDialog.observe(this, Observer {
+        mViewModel.loadingChange.dismissDialog.observe(viewLifecycleOwner, Observer {
+            dismissLoading()
+        })
+        mViewModel.loadingChange.status.observe(viewLifecycleOwner, Observer {
+            onStatusChanged(it)
+        })
+        mViewModel.loadingChange.errorMsg.observe(viewLifecycleOwner, Observer {
+            if(it!=null){
+                onError(it)
+            }
             dismissLoading()
         })
     }

@@ -19,15 +19,19 @@ class MainActivity : AppCompatActivity() {
             val list= mutableListOf<String >()
             list.add("折叠布局")
             list.add("折叠布局2")
+            list.add("kotlin练习")
+            list.add("bottomSheet")
             mAdapter.setList(list)
             mAdapter.setOnItemClickListener { _, _, position ->
                 when(position){
-                    0->{
-                        startActivity(Intent(this@MainActivity,CoordinatorLayoutActivity::class.java))
-                    }
-                    1->{
-                        startActivity(Intent(this@MainActivity,CoordinatorLayoutActivity2::class.java))
-                    }
+                    0->startActivity(Intent(this@MainActivity,CoordinatorLayoutActivity::class.java))
+
+                    1-> startActivity(Intent(this@MainActivity,CoordinatorLayoutActivity2::class.java))
+
+                    2-> startActivity(Intent(this@MainActivity,KotlinDemo::class.java))
+
+                    3-> startActivity(Intent(this@MainActivity,BottomDemo::class.java))
+
 
                 }
 

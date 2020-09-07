@@ -2,11 +2,12 @@ package com.leqi.baselib.base.dialog
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 
 
-abstract class BaseEasyDialogFragment : DialogFragment() {
+abstract class BaseEasyDialogFragment : AppCompatDialogFragment() {
 
     abstract fun layoutId(): Int
 
