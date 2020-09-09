@@ -10,11 +10,10 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
         app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         tools:listitem="@layout/item_flexbox_layout"/>
 
 

@@ -1,11 +1,13 @@
 package com.leqi.zhuyudemo
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.leqi.zhuyudemo.adapter.SimpleAdapter
 import kotlinx.android.synthetic.main.activity_bottom_demo.*
-import java.lang.reflect.Field
 
 
 /**
@@ -13,18 +15,17 @@ import java.lang.reflect.Field
   * @Author:         ZHUYU
   * @CreateDate:     2020/9/8 13:39
  */
-class BottomDemo : AppCompatActivity() {
+class RecyclerviewNestingDemo : AppCompatActivity() {
 
     val mAdapter by lazy{ SimpleAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bottom_demo)
+        setContentView(R.layout.activity_recyclerview_nesting_demo)
         recyclerView.apply {
             adapter=mAdapter
-            animation=null
-            val list= mutableListOf<String>()
-            repeat(10000){
+            val list= mutableListOf<String >()
+            repeat(1000){
                 list.add("大")
                 list.add("小")
                 list.add("魁")
@@ -36,23 +37,12 @@ class BottomDemo : AppCompatActivity() {
                 list.add("万")
                 list.add("岁")
                 list.add("一")
+
             }
             mAdapter.setList(list)
         }
-        setMaxFlingVelocity(recyclerView,4000)
-
     }
 
-    //设定RecyclerView最大滑动速度
-    private fun setMaxFlingVelocity(recycleview: RecyclerView, velocity: Int) {
-        try {
-            val field: Field = recycleview.javaClass.getDeclaredField("mMaxFlingVelocity")
-            field.setAccessible(true)
-            field.set(recycleview, velocity)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
 
 
 }

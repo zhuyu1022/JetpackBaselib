@@ -3,8 +3,7 @@ package com.leqi.zhuyudemo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.BaseAdapter
-import androidx.recyclerview.widget.RecyclerView
+
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,7 +19,7 @@ class MainActivity : AppCompatActivity() {
             list.add("折叠布局")
             list.add("折叠布局2")
             list.add("kotlin练习")
-            list.add("bottomSheet")
+            list.add("FlexboxLayout性能测试")
             mAdapter.setList(list)
             mAdapter.setOnItemClickListener { _, _, position ->
                 when(position){
