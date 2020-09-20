@@ -1,17 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#ffedf6ff"
+>
+<!--<androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+<!--    android:id="@+id/swipeRefeshLayout"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
 
-   <androidx.recyclerview.widget.RecyclerView
-       android:id="@+id/recyclerview"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-       android:orientation="vertical"
-       tools:listitem="@layout/item_layout"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+     >
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="254dp"
+            android:fitsSystemWindows="true">
+            <!-- app:scrimAnimationDuration="300"  渐变色过渡时间-->
+            <!-- app:contentScrim="@color/colorPrimary"   折叠出发后的过渡色-->
+            <!-- app:statusBarScrim="@android:color/transparent" 状态栏填充色-->
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentScrim="@color/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:scrimAnimationDuration="400"
+                app:statusBarScrim="@android:color/transparent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/main_top_bg"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.7" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="110dp"
+                    android:text="Hi~\n欢迎使用玩安卓"
+                    android:textColor="@color/normalTextColor"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.3" />
+                <!--toolbar 在这里  主要起分割、控制  布局大小、显示的功能，没有实际意义-->
+                <!--目前还不清楚CollapsingToolbarLayout中对Toolbar是具体如何控制的-->
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="112dp"
+                    android:minHeight="?attr/actionBarSize"
+
+                    app:titleMarginTop="15dp" />
+                <!--顶部-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:minHeight="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/userHeadImg"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/head_default"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:riv_oval="true" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/chooseTeachingMateriaLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/userHeadImg"
+                        app:layout_constraintStart_toEndOf="@+id/userHeadImg"
+                        app:layout_constraintTop_toTopOf="@+id/userHeadImg">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="初一上册"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:textColor="@color/normalTextColor"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <Button
+                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="24dp"
+                        android:backgroundTint="@color/white"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="拍照背诵"
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="14sp"
+                        app:cornerRadius="18dp"
+                        app:icon="@mipmap/camera"
+                        app:iconSize="24dp"
+                        app:iconTint="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/userHeadImg"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/userHeadImg"
+                        app:strokeColor="@color/lineColor"
+                        app:strokeWidth="1dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="bottom">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:background="@color/transparent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tabGravity="fill"
+                        app:tabIndicator="@drawable/indicator"
+                        app:tabIndicatorColor="@color/colorAccent"
+                        app:tabIndicatorHeight="3dp"
+                        app:tabRippleColor="@color/rippleColor" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+<!--</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+    <!--左侧菜单栏-->
+    <include
+        layout="@layout/main_slide_left_layout"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start" />
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

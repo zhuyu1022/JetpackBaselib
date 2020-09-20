@@ -1,6 +1,7 @@
 package com.leqi.baselib.ext
 
 import com.blankj.utilcode.util.ToastUtils
+import com.google.gson.Gson
 
 
 /**
@@ -47,4 +48,11 @@ fun String.decodeUnicode(): String {
  */
 fun String.toast() {
     ToastUtils.showShort(this)
+}
+
+/**
+ * 将对象转为JSON字符串
+ */
+fun Any?.toJson():String{
+    return Gson().toJson(this)
 }

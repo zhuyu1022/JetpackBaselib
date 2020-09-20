@@ -8,35 +8,25 @@ import androidx.lifecycle.ViewModel
 
 open class BaseViewModel : ViewModel() {
 
-//    abstract var mRepository: T
-////    open fun BaseViewModel(application: Application) {
-////        super(application)
-////        mRepository = TUtil.getNewInstance(this, 0)
-////    }
-
-
-    override fun onCleared() {
-        super.onCleared()
-        // mRepository?.onCleared()
-    }
-
     fun showLoading(msg: String) {
         loadingChange.showDialog.postValue(msg)
     }
 
     fun dismissLoading() {
-        loadingChange.dismissDialog.postValue(null)
+        loadingChange.dismissDialog.postValue(true)
     }
-
+    @Deprecated("已过时的方法，直接toast就行了")
     fun onError(msg: String?){
         loadingChange.errorMsg.postValue(msg)
     }
+    @Deprecated("已过时的方法，直接toast就行了")
     fun onSuccess(msg: String?){
         loadingChange.errorMsg.postValue(msg)
     }
 
     /**设置加载状态**/
-    fun setStatus(status: String) {
+    @Deprecated("已过时的方法，之前傻逼了，不应该这样做的")
+    fun setStatus(status: Int) {
         loadingChange.status.postValue(status)
     }
 
@@ -51,13 +41,13 @@ open class BaseViewModel : ViewModel() {
         val showDialog by lazy { MutableLiveData<String>() }
 
         //隐藏
-        val dismissDialog by lazy { MutableLiveData<String>() }
+        val dismissDialog by lazy { MutableLiveData<Boolean>() }
 
         //错误信息
         val errorMsg by lazy { MutableLiveData<String>() }
 
         //加载状态监听
-        val status by lazy { MutableLiveData<String>() }
+        val status by lazy { MutableLiveData<Int>() }
     }
 
 

@@ -1,0 +1,15 @@
+<resources>
+
+    <declare-styleable name="TitleView">
+
+        <!--titleView-->
+        <attr name="title_text" format="string"/>
+        <attr name="title_text_color" format="reference"/>
+        <attr name="right_src" format="reference"/>
+        <attr name="right_src2" format="reference"/>
+        <attr name="left_src" format="reference"/>
+    </declare-styleable>
+
+
+
+</resources>

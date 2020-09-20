@@ -1,10 +1,68 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--listview、recyclerview等控件的上下波浪颜色-->
+      <!--  <item name="android:colorEdgeEffect">@color/colorRipple</item>-->
+
+    </style>
+    <!--SplashActivity Theme-->
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/bg_splash_layer_list</item>
     </style>
 
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
+<!--
+
+    <style name="AnimationTheme" parent="AppTheme">
+        &lt;!&ndash; 开启过渡效果 &ndash;&gt;
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+-->
+
+
+
+    <!-- Navigation Header -->
+
+
+    <!--    <style name="DialogButton.left" parent="Widget.AppCompat.Button.Colored">-->
+<!--        <item name="android:textColor">@color/dialogNormalTextColor</item>-->
+<!--        <item name="android:textSize">17sp</item>-->
+<!--        <item name="android:textStyle">bold</item>-->
+<!--        <item name="android:background">@drawable/dialog_button_gary_left</item>-->
+<!--    </style>-->
+
+<!--    <style name="DialogButton.right" parent="Widget.AppCompat.Button.Colored">-->
+<!--        <item name="android:textColor">@color/dialogWarningTextColor</item>-->
+<!--        <item name="android:textSize">17sp</item>-->
+<!--        <item name="android:textStyle">bold</item>-->
+<!--        <item name="android:background">@drawable/dialog_button_gary_right</item>-->
+<!--    </style>-->
+
+
+    <!--无阴影的materialButton样式 项目里都用这个好了 -->
+    <style name="materialButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+    </style>
 </resources>

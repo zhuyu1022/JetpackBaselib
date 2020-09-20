@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.leqi.baselib.base.viewModel.BaseViewModel
-import com.leqi.baselib.base.viewModel.Status
 import com.leqi.baselib.ext.getVmClazz
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
@@ -52,7 +51,8 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity(),
 
     abstract fun onError(message: String = "")
 
-    open fun onStatusChanged(status: String) {}
+    @Deprecated("已过时的方法，之前傻逼了，不应该这样做的")
+    open fun onStatusChanged(status: Int) {}
 
     /**
      * 创建viewModel  内部来自activity 泛型的 viewmodel

@@ -66,7 +66,8 @@ abstract class BaseVmFragment<VM : BaseViewModel>:Fragment() {
     abstract fun dismissLoading()
     abstract fun onError(message: String = "")
 
-    open fun onStatusChanged(status: String) {}
+    @Deprecated("已过时的方法，之前傻逼了，不应该这样做的")
+    open fun onStatusChanged(status: Int) {}
 
     /**
      * 注册 UI 事件

@@ -54,7 +54,7 @@ abstract class BaseEasyDialogFragment : AppCompatDialogFragment() {
      * 2019年3月13日添加，如有问题，直接删除该方法
      */
     override fun dismiss() {
-        if (activity != null && !activity!!.isFinishing) {
+        if (activity != null && !activity?.isFinishing!!) {
             super.dismissAllowingStateLoss()
         }
     }
