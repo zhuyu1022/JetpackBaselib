@@ -118,7 +118,6 @@ fun <T> BaseViewModel.requestParseData(liveData: MutableLiveData< UiState<T>>,
             runCatching {
                 uiState.data=it
                 uiState.status=Status.SUCCESS
-                liveData.postValue(uiState)
                 //网络请求成功 关闭弹窗
                 loadingChange.dismissDialog.postValue(false)
                 //成功回调
