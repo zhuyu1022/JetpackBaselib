@@ -3,14 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    signingConfigs {
-        ZHUYU {
-            storeFile file('D:\\个人项目\\mip_keyStore.keyStore')
-            storePassword 'hoperun'
-            keyAlias 'mips'
-            keyPassword 'hoperun'
-        }
-    }
+
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
