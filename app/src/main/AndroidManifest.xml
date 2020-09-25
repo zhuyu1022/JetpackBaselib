@@ -81,7 +81,11 @@
             android:hardwareAccelerated="true"
             android:launchMode="singleTask"
             />
-
+        <activity
+            android:name=".ui.home.activity.ArticleDetail"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTask"
+            />
 
 
     </application>

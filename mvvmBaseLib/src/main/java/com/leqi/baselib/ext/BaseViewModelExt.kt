@@ -3,8 +3,6 @@ package com.leqi.baselib.ext
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.leqi.baselib.base.activity.BaseVmActivity
-import com.leqi.baselib.base.fragment.BaseVmFragment
 import com.leqi.baselib.base.viewModel.BaseViewModel
 import com.leqi.baselib.state.Status
 import com.leqi.baselib.network.AppException
@@ -12,7 +10,7 @@ import com.leqi.baselib.network.Error
 import com.leqi.baselib.network.ExceptionHandle
 import com.leqi.baselib.state.UiState
 import kotlinx.coroutines.*
-import me.hgj.jetpackmvvm.network.BaseResponse
+import com.leqi.baselib.network.BaseResponse
 import java.net.UnknownHostException
 
 
@@ -136,7 +134,7 @@ fun <T> BaseViewModel.requestParseData(liveData: MutableLiveData< UiState<T>>,
             //打印错误消息
             it.message?.loge()
             val appException=ExceptionHandle.handleException(it)
-            if (appException.isNetError()){
+            if (appException.isNoNet()){
                 uiState.status=Status.NET_ERROR
             }else{
                 uiState.status=Status.ERROR
@@ -214,8 +212,8 @@ suspend fun <T> executeResponse(
 /**
  * 判断AppException是不是网络错误
  */
-fun AppException.isNetError():Boolean{
-    return errCode == Error.NETWORK_ERROR.getKey()
+fun AppException.isNoNet():Boolean{
+    return errCode == Error.NO_NETWORK.getKey()
 }
 
 

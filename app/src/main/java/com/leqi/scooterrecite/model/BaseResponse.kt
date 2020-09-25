@@ -1,6 +1,6 @@
 package com.leqi.scooterrecite.model
 
-import me.hgj.jetpackmvvm.network.BaseResponse
+import com.leqi.baselib.network.BaseResponse
 
 data class ApiResponse<T>(var errorCode: Int, var errorMsg: String, var data: T) : BaseResponse<T>() {
 

@@ -3,50 +3,55 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 30
-
+    signingConfigs {
+        ZHUYU {
+            storeFile file('D:\\个人项目\\mip_keyStore.keyStore')
+            storePassword 'hoperun'
+            keyAlias 'mips'
+            keyPassword 'hoperun'
+        }
+    }
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.zhuyu.wanandroid"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
 
-
     buildTypes {
-        release {
-            minifyEnabled true
-            zipAlignEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-
         debug {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            shrinkResources false
+            zipAlignEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true//开启混淆
+            shrinkResources true
+            zipAlignEnabled true//去除无用资源
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
-    /***配置打包名称*/
-    applicationVariants.all { variant ->
-        def buildType = variant.buildType.name
-        def flavorName = variant.flavorName
-        def createTime = new Date().format("YYYY-MM-dd", TimeZone.getTimeZone("GMT+08:00"))
-        variant.outputs.all {
-            outputFileName = flavorName + "_" + buildType + "_v" + defaultConfig.versionName + "_" + createTime + ".apk"
-        }
-    }
 
+    lintOptions {
+        disable 'InvalidPackage'
+        disable "ResourceType"
+        abortOnError false
+    }
     sourceSets {
         main {
             jniLibs.srcDirs = []
             res.srcDirs = [
                     // 资源分包
-                    'src/main/res/',
-
+                    'src/main/res/'
             ]
 
         }
@@ -110,5 +115,8 @@ dependencies {
     //弹窗库  目前来看可以代替 dialog
     implementation 'com.lxj:xpopup:2.0.8'
     implementation 'com.permissionx.guolindev:permissionx:1.3.0'
+
+    //播放apng动图
+    implementation 'com.github.penfeizhou.android.animation:apng:2.4.2'
 
 }

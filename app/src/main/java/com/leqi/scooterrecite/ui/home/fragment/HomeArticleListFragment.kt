@@ -7,8 +7,10 @@ import com.leqi.baselib.base.viewModel.BaseViewModel
 import com.leqi.baselib.ext.logd
 import com.leqi.baselib.state.Status
 import com.leqi.baselib.state.parseState
+import com.leqi.baselib.util.startActivity
 import com.leqi.scooterrecite.R
 import com.leqi.scooterrecite.base.BaseFragment
+import com.leqi.scooterrecite.ui.home.activity.ArticleDetail
 import com.leqi.scooterrecite.ui.home.adapter.TeachingContentAdapter
 import com.leqi.scooterrecite.util.toast
 import com.leqi.scooterrecite.viewmodel.MainViewModel
@@ -31,6 +33,9 @@ class HomeArticleListFragment : BaseFragment<BaseViewModel>() {
     override fun initView(savedInstanceState: Bundle?) {
         recyclerview.apply {
             adapter = mAdapter
+            mAdapter.setOnItemClickListener { adapter, view, position ->
+                startActivity<ArticleDetail>()
+            }
         }
 
 

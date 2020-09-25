@@ -28,7 +28,12 @@ enum class Error(private val code: Int, private val err: String) {
     /**
      * 连接超时
      */
-    TIMEOUT_ERROR(1006, "网络连接超时，请稍后重试");
+    TIMEOUT_ERROR(1006, "网络连接超时，请稍后重试"),
+
+    /**
+     * 无网络错误
+     */
+    NO_NETWORK(1007, "当前无网络链接，请稍后重试");
 
     fun getValue(): String {
         return err

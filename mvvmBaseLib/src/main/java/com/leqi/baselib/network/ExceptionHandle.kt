@@ -22,7 +22,7 @@ object ExceptionHandle {
             when (it) {
                 is UnknownHostException ->{
                     //无网络时会报此异常
-                    ex = AppException(Error.NETWORK_ERROR,e)
+                    ex = AppException(Error.NO_NETWORK,e)
                     return ex
                 }
                 is HttpException -> {

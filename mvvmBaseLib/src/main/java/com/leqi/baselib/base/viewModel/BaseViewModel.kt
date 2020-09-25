@@ -15,11 +15,18 @@ open class BaseViewModel : ViewModel() {
     fun dismissLoading() {
         loadingChange.dismissDialog.postValue(true)
     }
-    @Deprecated("已过时的方法，直接toast就行了")
+
+
+    fun onMsg(msg: String?){
+        loadingChange.errorMsg.postValue(msg)
+    }
+
+
+    @Deprecated("已过时的方法，改成onMsg")
     fun onError(msg: String?){
         loadingChange.errorMsg.postValue(msg)
     }
-    @Deprecated("已过时的方法，直接toast就行了")
+    @Deprecated("已过时的方法，改成onMsg")
     fun onSuccess(msg: String?){
         loadingChange.errorMsg.postValue(msg)
     }

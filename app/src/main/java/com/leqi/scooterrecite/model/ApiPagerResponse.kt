@@ -1,6 +1,5 @@
 package com.leqi.scooterrecite.model
 
-import me.hgj.jetpackmvvm.network.BaseResponse
 import java.io.Serializable
 
 /**

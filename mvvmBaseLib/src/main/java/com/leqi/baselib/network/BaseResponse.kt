@@ -1,4 +1,4 @@
-package me.hgj.jetpackmvvm.network
+package com.leqi.baselib.network
 
 /**
  * 作者　: hegaojian
