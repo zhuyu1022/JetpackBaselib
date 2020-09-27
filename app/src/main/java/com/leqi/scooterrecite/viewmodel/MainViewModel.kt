@@ -24,9 +24,6 @@ class MainViewModel : BaseViewModel() {
             if (it.data==null||it.data?.data?.datas.isNullOrEmpty()){
                 it.status=Status.EMPTY
                 articlrList.postValue(it)
-            }else{
-                it.status=Status.SUCCESS
-                articlrList.postValue(it)
             }
             pageNo++
         }, error = {

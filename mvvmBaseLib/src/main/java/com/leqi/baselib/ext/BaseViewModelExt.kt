@@ -67,7 +67,7 @@ fun <T> BaseViewModel.request(
         }.onSuccess {
             runCatching {
                 //网络请求成功 关闭弹窗
-                loadingChange.dismissDialog.postValue(false)
+                if (isShowDialog)   loadingChange.dismissDialog.postValue(false)
                 //成功回调
                 success(it)
             }.onFailure { e ->
@@ -78,7 +78,7 @@ fun <T> BaseViewModel.request(
             }
         }.onFailure {
             //网络请求异常 关闭弹窗
-            loadingChange.dismissDialog.postValue(false)
+            if (isShowDialog) loadingChange.dismissDialog.postValue(false)
             //打印错误消息
             it.message?.loge()
             //失败回调
@@ -114,10 +114,11 @@ fun <T> BaseViewModel.requestParseData(liveData: MutableLiveData< UiState<T>>,
             withContext(Dispatchers.IO) { request() }
         }.onSuccess {
             runCatching {
+                //网络请求成功 关闭弹窗
+                if (isShowDialog)   loadingChange.dismissDialog.postValue(false)
                 uiState.data=it
                 uiState.status=Status.SUCCESS
-                //网络请求成功 关闭弹窗
-                loadingChange.dismissDialog.postValue(false)
+                liveData.postValue(uiState)
                 //成功回调
                 success(uiState)
             }.onFailure { e ->
@@ -130,7 +131,7 @@ fun <T> BaseViewModel.requestParseData(liveData: MutableLiveData< UiState<T>>,
             }
         }.onFailure {
             //网络请求异常 关闭弹窗
-            loadingChange.dismissDialog.postValue(false)
+            if (isShowDialog)  loadingChange.dismissDialog.postValue(false)
             //打印错误消息
             it.message?.loge()
             val appException=ExceptionHandle.handleException(it)
@@ -170,9 +171,9 @@ fun <T> BaseViewModel.requestCheck(
             //请求体
             withContext(Dispatchers.IO) { request() }
         }.onSuccess {
-            //网络请求成功 关闭弹窗
-            loadingChange.dismissDialog.postValue(false)
             runCatching {
+                //网络请求成功 关闭弹窗
+                if (isShowDialog)  loadingChange.dismissDialog.postValue(false)
                 //校验请求结果码是否正确，不正确会抛出异常走下面的onFailure
                 executeResponse(it) { t -> success(t) }
             }.onFailure { e ->
@@ -183,7 +184,7 @@ fun <T> BaseViewModel.requestCheck(
             }
         }.onFailure {
             //网络请求异常 关闭弹窗
-            loadingChange.dismissDialog.postValue(false)
+            if (isShowDialog)  loadingChange.dismissDialog.postValue(false)
             //打印错误消息
             it.message?.loge()
             //失败回调

@@ -5,14 +5,11 @@ import android.os.Bundle
 import androidx.fragment.app.activityViewModels
 import com.leqi.baselib.base.viewModel.BaseViewModel
 import com.leqi.baselib.ext.logd
-import com.leqi.baselib.state.Status
 import com.leqi.baselib.state.parseState
-import com.leqi.baselib.util.startActivity
 import com.leqi.scooterrecite.R
 import com.leqi.scooterrecite.base.BaseFragment
-import com.leqi.scooterrecite.ui.home.activity.ArticleDetail
+import com.leqi.scooterrecite.ui.common.activity.WebPageActivity
 import com.leqi.scooterrecite.ui.home.adapter.TeachingContentAdapter
-import com.leqi.scooterrecite.util.toast
 import com.leqi.scooterrecite.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_teaching_content.*
 
@@ -33,26 +30,20 @@ class HomeArticleListFragment : BaseFragment<BaseViewModel>() {
     override fun initView(savedInstanceState: Bundle?) {
         recyclerview.apply {
             adapter = mAdapter
-            mAdapter.setOnItemClickListener { adapter, view, position ->
-                startActivity<ArticleDetail>()
+            mAdapter.setOnItemClickListener { _, _, position ->
+                WebPageActivity.actionStart(requireActivity(), mAdapter.data[position].link)
             }
         }
-
-
-
     }
-
-
-
 
 
     @SuppressLint("InflateParams")
     override fun createObserver() {
         mMainViewmodel.articlrList.observe(this, { it ->
             statusView.setStatusType(it.status)
+            mAdapter.setList(it.data?.data?.datas)
             it.parseState(onSuccess = {
-                mAdapter.setList(it.data.datas)
-                    "onSuccess".logd()
+                "onSuccess".logd()
             }, onLoading = {
                 "onLoading".logd()
             }, onEmpty = {
@@ -68,10 +59,6 @@ class HomeArticleListFragment : BaseFragment<BaseViewModel>() {
     override fun initData() {
 
     }
-
-
-
-
 
 
 }
